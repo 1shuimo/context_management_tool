@@ -32,25 +32,25 @@
 ## 关键源码入口
 
 - 程序入口：
-  - [`research/Context-Gateway/cmd/main.go`](../research/Context-Gateway/cmd/main.go)
+  - [`research/Context-Gateway/cmd/main.go`](https://github.com/Compresr-ai/Context-Gateway/blob/810171ef2b6348a915baa9bf76a2801f6249d92b/cmd/main.go)
     - 装配 gateway、provider adapter、dashboard 和配置加载，是整条代理链的启动入口。
 - preemptive compaction 管理器：
-  - [`research/Context-Gateway/internal/preemptive/manager.go`](../research/Context-Gateway/internal/preemptive/manager.go)
+  - [`research/Context-Gateway/internal/preemptive/manager.go`](https://github.com/Compresr-ai/Context-Gateway/blob/810171ef2b6348a915baa9bf76a2801f6249d92b/internal/preemptive/manager.go)
     - 管理“正常请求追踪 -> 后台 summary 预计算 -> compaction 请求命中缓存/等待/回退同步压缩”这条主流程。
 - streaming 请求与 `expand_context`：
-  - [`research/Context-Gateway/internal/gateway/handler_streaming.go`](../research/Context-Gateway/internal/gateway/handler_streaming.go)
+  - [`research/Context-Gateway/internal/gateway/handler_streaming.go`](https://github.com/Compresr-ai/Context-Gateway/blob/810171ef2b6348a915baa9bf76a2801f6249d92b/internal/gateway/handler_streaming.go)
     - 负责拦截流式响应、检测 `expand_context` 调用、重写历史并在需要时把请求二次发送给上游模型。
 - tool output compression pipe：
-  - [`research/Context-Gateway/internal/pipes/tool_output/tool_output.go`](../research/Context-Gateway/internal/pipes/tool_output/tool_output.go)
+  - [`research/Context-Gateway/internal/pipes/tool_output/tool_output.go`](https://github.com/Compresr-ai/Context-Gateway/blob/810171ef2b6348a915baa9bf76a2801f6249d92b/internal/pipes/tool_output/tool_output.go)
     - 提取工具输出、判断阈值、压缩、缓存原文与压缩结果，并给压缩内容打上 `SHADOW` 标记。
 - tool discovery pipe：
-  - [`research/Context-Gateway/internal/pipes/tool_discovery/tool_discovery.go`](../research/Context-Gateway/internal/pipes/tool_discovery/tool_discovery.go)
+  - [`research/Context-Gateway/internal/pipes/tool_discovery/tool_discovery.go`](https://github.com/Compresr-ai/Context-Gateway/blob/810171ef2b6348a915baa9bf76a2801f6249d92b/internal/pipes/tool_discovery/tool_discovery.go)
     - 对 tools schema 做相关性筛选，只保留当前最相关的工具，并把其余工具延期到 fallback 搜索流程。
 - search fallback handler：
-  - [`research/Context-Gateway/internal/gateway/search_tool_handler.go`](../research/Context-Gateway/internal/gateway/search_tool_handler.go)
+  - [`research/Context-Gateway/internal/gateway/search_tool_handler.go`](https://github.com/Compresr-ai/Context-Gateway/blob/810171ef2b6348a915baa9bf76a2801f6249d92b/internal/gateway/search_tool_handler.go)
     - 处理 `gateway_search_tools` 这类 phantom tool 调用，从 deferred tools 里搜索并回注真正需要的工具定义。
 - deferred/expanded tool session：
-  - [`research/Context-Gateway/internal/gateway/tool_session.go`](../research/Context-Gateway/internal/gateway/tool_session.go)
+  - [`research/Context-Gateway/internal/gateway/tool_session.go`](https://github.com/Compresr-ai/Context-Gateway/blob/810171ef2b6348a915baa9bf76a2801f6249d92b/internal/gateway/tool_session.go)
     - 为每个 session 维护 deferred tools 和 expanded tools 的状态，避免同一工具被反复过滤和反复搜索。
 
 ## 核心机制

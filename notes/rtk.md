@@ -24,19 +24,19 @@
 ## 关键源码入口
 
 - 重写入口：
-  - [`research/rtk/src/rewrite_cmd.rs`](../research/rtk/src/rewrite_cmd.rs)
+  - [`research/rtk/src/rewrite_cmd.rs`](https://github.com/rtk-ai/rtk/blob/b11fb00cde0d8759de563d602c2e3952be482309/src/rewrite_cmd.rs)
     - 负责 shell 命令的解析与改写入口，决定原命令何时被改成 `rtk <subcommand>`。
 - 重写规则：
-  - [`research/rtk/src/discover/registry.rs`](../research/rtk/src/discover/registry.rs)
+  - [`research/rtk/src/discover/registry.rs`](https://github.com/rtk-ai/rtk/blob/b11fb00cde0d8759de563d602c2e3952be482309/src/discover/registry.rs)
     - 按命令族发现合适的压缩器，是 `git`、`pytest`、`gh`、`tsc` 等规则真正挂载的地方。
 - 原始输出 tee：
-  - [`research/rtk/src/tee.rs`](../research/rtk/src/tee.rs)
+  - [`research/rtk/src/tee.rs`](https://github.com/rtk-ai/rtk/blob/b11fb00cde0d8759de563d602c2e3952be482309/src/tee.rs)
     - 在压缩输出之外保存完整原始输出，并生成回看提示，避免压过头后彻底失去原文。
 - token / 历史 tracking：
-  - [`research/rtk/src/tracking.rs`](../research/rtk/src/tracking.rs)
+  - [`research/rtk/src/tracking.rs`](https://github.com/rtk-ai/rtk/blob/b11fb00cde0d8759de563d602c2e3952be482309/src/tracking.rs)
     - 用 SQLite 记录命令历史、原始与压缩 token 数、耗时和节省比例。
 - 架构文档：
-  - [`research/rtk/ARCHITECTURE.md`](../research/rtk/ARCHITECTURE.md)
+  - [`research/rtk/ARCHITECTURE.md`](https://github.com/rtk-ai/rtk/blob/b11fb00cde0d8759de563d602c2e3952be482309/ARCHITECTURE.md)
     - 解释 rewrite、compress、tee、tracking 这些组件之间的整体关系，适合先读建立全局图景。
 
 ## 核心机制

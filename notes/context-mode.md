@@ -32,22 +32,22 @@
 ## 关键源码入口
 
 - 输出执行与意图检索：
-  - [`research/context-mode/src/server.ts`](../research/context-mode/src/server.ts)
+  - [`research/context-mode/src/server.ts`](https://github.com/mksglu/context-mode/blob/3469b7ab422afc0323bfde76ba67c80f7fbe8570/src/server.ts)
     - 注册 `ctx_execute`、`ctx_search` 等 MCP 工具，并决定大输出是直接截断返回，还是先入库再按 `intent` 做薄返回。
 - 截断逻辑：
-  - [`research/context-mode/src/truncate.ts`](../research/context-mode/src/truncate.ts)
+  - [`research/context-mode/src/truncate.ts`](https://github.com/mksglu/context-mode/blob/3469b7ab422afc0323bfde76ba67c80f7fbe8570/src/truncate.ts)
     - 实现 `smartTruncate()`，核心是保留头尾关键片段并插入省略提示，而不是简单砍前 N 行。
 - 本地知识库：
-  - [`research/context-mode/src/store.ts`](../research/context-mode/src/store.ts)
+  - [`research/context-mode/src/store.ts`](https://github.com/mksglu/context-mode/blob/3469b7ab422afc0323bfde76ba67c80f7fbe8570/src/store.ts)
     - `ContentStore` 的主体，负责 SQLite/FTS5 建库、chunking、索引、BM25 检索和 fuzzy fallback。
 - session snapshot：
-  - [`research/context-mode/src/session/snapshot.ts`](../research/context-mode/src/session/snapshot.ts)
+  - [`research/context-mode/src/session/snapshot.ts`](https://github.com/mksglu/context-mode/blob/3469b7ab422afc0323bfde76ba67c80f7fbe8570/src/session/snapshot.ts)
     - 把 session events 抽成 resume artifact，并按优先级控制哪些状态必须在 compact 后恢复。
 - session DB：
-  - [`research/context-mode/src/session/db.ts`](../research/context-mode/src/session/db.ts)
+  - [`research/context-mode/src/session/db.ts`](https://github.com/mksglu/context-mode/blob/3469b7ab422afc0323bfde76ba67c80f7fbe8570/src/session/db.ts)
     - 负责 session event 的落库、查询和生命周期管理，是 snapshot builder 的底层数据面。
 - Codex / 各平台适配：
-  - [`research/context-mode/src/adapters/`](../research/context-mode/src/adapters)
+  - [`research/context-mode/src/adapters/`](https://github.com/mksglu/context-mode/tree/3469b7ab422afc0323bfde76ba67c80f7fbe8570/src/adapters)
     - 把 Claude Code、Gemini CLI、Codex CLI 等平台统一抽象到同一套 hook 生命周期接口上。
 
 ## 核心机制

@@ -25,22 +25,22 @@
 ## 关键源码入口
 
 - file-based 入口：
-  - [`research/ReMe/reme/reme_light.py`](../research/ReMe/reme/reme_light.py)
+  - [`research/ReMe/reme/reme_light.py`](https://github.com/agentscope-ai/ReMe/blob/f408d6ec4a6141aeddd3a76f943bcec83714a503/reme/reme_light.py)
     - `ReMeLight` 主入口，负责把 file memory、tool result compact、summary task 和 search 组装成一套轻量运行流。
 - tool result compactor：
-  - [`research/ReMe/reme/memory/file_based/components/tool_result_compactor.py`](../research/ReMe/reme/memory/file_based/components/tool_result_compactor.py)
+  - [`research/ReMe/reme/memory/file_based/components/tool_result_compactor.py`](https://github.com/agentscope-ai/ReMe/blob/f408d6ec4a6141aeddd3a76f943bcec83714a503/reme/memory/file_based/components/tool_result_compactor.py)
     - 超阈值工具结果写入 `tool_result/`，正文只留截断版与文件引用，并负责过期文件清理。
 - context checker：
-  - [`research/ReMe/reme/memory/file_based/components/context_checker.py`](../research/ReMe/reme/memory/file_based/components/context_checker.py)
+  - [`research/ReMe/reme/memory/file_based/components/context_checker.py`](https://github.com/agentscope-ai/ReMe/blob/f408d6ec4a6141aeddd3a76f943bcec83714a503/reme/memory/file_based/components/context_checker.py)
     - 按 token 预算拆分“保留消息”和“待压缩消息”，并尽量保证 turn 与 tool pair 不被截断。
 - conversation compactor：
-  - [`research/ReMe/reme/memory/file_based/components/compactor.py`](../research/ReMe/reme/memory/file_based/components/compactor.py)
+  - [`research/ReMe/reme/memory/file_based/components/compactor.py`](https://github.com/agentscope-ai/ReMe/blob/f408d6ec4a6141aeddd3a76f943bcec83714a503/reme/memory/file_based/components/compactor.py)
     - 用结构化摘要模板压缩长对话，保留目标、进度、决策和待办等可恢复信息。
 - memory search：
-  - [`research/ReMe/reme/memory/file_based/tools/memory_search.py`](../research/ReMe/reme/memory/file_based/tools/memory_search.py)
+  - [`research/ReMe/reme/memory/file_based/tools/memory_search.py`](https://github.com/agentscope-ai/ReMe/blob/f408d6ec4a6141aeddd3a76f943bcec83714a503/reme/memory/file_based/tools/memory_search.py)
     - 对 `MEMORY.md` 和 `memory/*.md` 做 hybrid search，并把结果格式化为可直接给模型消费的片段列表。
 - vector-based retrieval 编排：
-  - [`research/ReMe/reme/memory/vector_based/reme_retriever.py`](../research/ReMe/reme/memory/vector_based/reme_retriever.py)
+  - [`research/ReMe/reme/memory/vector_based/reme_retriever.py`](https://github.com/agentscope-ai/ReMe/blob/f408d6ec4a6141aeddd3a76f943bcec83714a503/reme/memory/vector_based/reme_retriever.py)
     - 统一调度多个 memory agent，把 query 驱动的检索结果、工具调用和命中节点聚合回来。
 
 ## 核心机制
