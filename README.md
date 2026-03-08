@@ -25,7 +25,13 @@
 bash scripts/bootstrap_research.sh
 ```
 
-这会把上游项目 clone 到 `research/`。主仓库默认不跟踪这些上游源码，避免把 9 个外部仓库直接塞进一个 GitHub 仓库里。
+这会把上游项目 clone 到 `research/`，并自动 checkout 到当前笔记引用的固定 commit。主仓库默认不跟踪这些上游源码，避免把 9 个外部仓库直接塞进一个 GitHub 仓库里。
+
+如果你只想拉各仓库最新默认分支，也可以运行：
+
+```bash
+bash scripts/bootstrap_research.sh latest
+```
 
 ## 仓库结构
 
