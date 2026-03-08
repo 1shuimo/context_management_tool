@@ -3,7 +3,7 @@
 ## 基本信息
 
 - 本地目录：`research/deepagents`
-- 远程仓库：`langchain-ai/deepagents`
+- 远程仓库：[`langchain-ai/deepagents`](https://github.com/langchain-ai/deepagents)
 - 核心包：`deepagents`
 - CLI 包：`deepagents-cli`
 - 定位：带 planning、filesystem、shell、subagents、summarization 的 agent harness
@@ -27,14 +27,19 @@
 
 - 核心 agent 组装：
   - [`research/deepagents/libs/deepagents/deepagents/graph.py`](../research/deepagents/libs/deepagents/deepagents/graph.py)
+    - `create_deep_agent()` 的核心实现，决定默认 middleware 栈、状态图和长任务运行原语。
 - summarization 中间件：
   - [`research/deepagents/libs/deepagents/deepagents/middleware/summarization.py`](../research/deepagents/libs/deepagents/deepagents/middleware/summarization.py)
+    - 负责自动和手动 compact，把旧消息写到 `conversation_history` 文件，再把 summary 注回上下文。
 - subagent 中间件：
   - [`research/deepagents/libs/deepagents/deepagents/middleware/subagents.py`](../research/deepagents/libs/deepagents/deepagents/middleware/subagents.py)
+    - 定义 `task` 工具，把子任务放进隔离状态里执行，并把结果压成单条返回给主代理。
 - CLI agent 组装：
   - [`research/deepagents/libs/cli/deepagents_cli/agent.py`](../research/deepagents/libs/cli/deepagents_cli/agent.py)
+    - 把 SDK 级 agent、thread resume、checkpointer 和 CLI 交互壳拼到一起。
 - CLI 本地上下文刷新：
   - [`research/deepagents/libs/cli/deepagents_cli/local_context.py`](../research/deepagents/libs/cli/deepagents_cli/local_context.py)
+    - 在 compact 或恢复后刷新本地工作集，让 CLI 层重新知道当前文件、状态和上下文摘要。
 
 ## 核心机制
 
@@ -175,4 +180,3 @@ CLI 部分还有几个和 runtime 很相关的点：
 - **summarization 事件接运行时状态**
 
 而不是“工具输出外置”那一层。
-

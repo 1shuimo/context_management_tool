@@ -3,7 +3,7 @@
 ## 基本信息
 
 - 本地目录：`research/mem0`
-- 远程仓库：`mem0ai/mem0`
+- 远程仓库：[`mem0ai/mem0`](https://github.com/mem0ai/mem0)
 - 当前本地版本：`1.0.5`
 - 定位：memory layer / memory SDK，面向用户、agent、run 维度的长期记忆管理
 
@@ -27,14 +27,19 @@
 
 - memory 主入口：
   - [`research/mem0/mem0/memory/main.py`](../research/mem0/mem0/memory/main.py)
+    - `Memory.add/search/get/delete` 的主编排层，负责作用域过滤、事实抽取、维护决策和存储更新。
 - config：
   - [`research/mem0/mem0/configs/base.py`](../research/mem0/mem0/configs/base.py)
+    - 定义 LLM、embedder、vector store、graph store 等核心组件的配置结构和默认项。
 - client API：
   - [`research/mem0/mem0/client/main.py`](../research/mem0/mem0/client/main.py)
+    - 暴露更接近 SDK/服务化边界的调用方式，方便把 Mem0 当作独立 memory service 来接入。
 - graph 相关：
   - [`research/mem0/mem0/graphs/`](../research/mem0/mem0/graphs)
+    - 放图存储与关系构建逻辑，展示 Mem0 如何把 memory 从向量召回扩展到图关系召回。
 - vector store 工厂：
   - [`research/mem0/mem0/utils/factory.py`](../research/mem0/mem0/utils/factory.py)
+    - 负责按配置实例化不同 vector store、embedder、LLM 和相关后端，是可插拔能力的装配点。
 
 ## 核心机制
 
@@ -185,4 +190,3 @@
 - **vector + graph + rerank 的可扩展边界**
 
 但它不负责会话压缩，也不负责工具输出外置。
-

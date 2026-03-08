@@ -3,7 +3,7 @@
 ## 基本信息
 
 - 本地目录：`research/headroom`
-- 远程仓库：`chopratejas/headroom`
+- 远程仓库：[`chopratejas/headroom`](https://github.com/chopratejas/headroom)
 - 当前本地 `HEAD`：`3945c02aa5a1dcbb25bc5b3b39d3684ef38d0d49`
 - 当前本地版本：`0.3.7`
 - 语言：Python
@@ -29,16 +29,22 @@
 
 - 一函数压缩入口：
   - [`research/headroom/headroom/compress.py`](../research/headroom/headroom/compress.py)
+    - 提供最小 API `compress(messages)`，并负责初始化单例 pipeline、调用 hooks、回传 token 节省指标。
 - transform pipeline：
   - [`research/headroom/headroom/transforms/pipeline.py`](../research/headroom/headroom/transforms/pipeline.py)
+    - 决定 transform 执行顺序，串起 `CacheAligner`、`ContentRouter`、`IntelligentContext` 等步骤。
 - CCR response handler：
   - [`research/headroom/headroom/ccr/response_handler.py`](../research/headroom/headroom/ccr/response_handler.py)
+    - 检测模型返回的 `headroom_retrieve` 工具调用，执行检索并自动续跑后续轮次直到拿到最终响应。
 - hierarchical memory：
   - [`research/headroom/headroom/memory/core.py`](../research/headroom/headroom/memory/core.py)
+    - `HierarchicalMemory` 的核心编排层，统一管理存储、向量索引、文本索引、缓存和 bubbling 策略。
 - direct mem0 adapter：
   - [`research/headroom/headroom/memory/backends/direct_mem0.py`](../research/headroom/headroom/memory/backends/direct_mem0.py)
+    - 在 facts/entities 已预抽取时跳过 Mem0 内部多轮 LLM 维护，直接写向量库和图存储。
 - markdown <-> memory bridge：
   - [`research/headroom/headroom/memory/bridge.py`](../research/headroom/headroom/memory/bridge.py)
+    - 提供 markdown 文件与 Headroom memory 之间的导入、导出和双向同步能力。
 
 ## 核心机制
 

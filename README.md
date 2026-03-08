@@ -53,23 +53,48 @@ bash scripts/bootstrap_research.sh
 
 这轮重新核对后，当前 `research/` 里的实际 Git 仓库是 9 个：
 
-| 仓库 | 定位 | 详细笔记 |
-|---|---|---|
-| `research/context-mode` | 输出外置检索 + session continuity | [`notes/context-mode.md`](notes/context-mode.md) |
-| `research/Context-Gateway` | API gateway + preemptive compaction + tool discovery filtering | [`notes/context-gateway.md`](notes/context-gateway.md) |
-| `research/headroom` | 通用压缩中间层 + 可逆 CCR + memory bridge | [`notes/headroom.md`](notes/headroom.md) |
-| `research/rtk` | shell/CLI 输出前门压缩 | [`notes/rtk.md`](notes/rtk.md) |
-| `research/ctx-zip` | 轻量级文件落盘式 tool result compaction 库 | [`notes/ctx-zip.md`](notes/ctx-zip.md) |
-| `research/ReMe` | 文件记忆 + 向量记忆 + tool result compact | [`notes/reme.md`](notes/reme.md) |
-| `research/deepagents` | orchestration / subagent / compact runtime | [`notes/deepagents.md`](notes/deepagents.md) |
-| `research/letta` | stateful memory runtime | [`notes/letta.md`](notes/letta.md) |
-| `research/mem0` | 外部长期记忆服务层 | [`notes/mem0.md`](notes/mem0.md) |
+| 本地目录 | 上游仓库 | 定位 | 详细笔记 |
+|---|---|---|---|
+| `research/context-mode` | [`mksglu/context-mode`](https://github.com/mksglu/context-mode) | 输出外置检索 + session continuity | [`notes/context-mode.md`](notes/context-mode.md) |
+| `research/Context-Gateway` | [`Compresr-ai/Context-Gateway`](https://github.com/Compresr-ai/Context-Gateway) | API gateway + preemptive compaction + tool discovery filtering | [`notes/context-gateway.md`](notes/context-gateway.md) |
+| `research/headroom` | [`chopratejas/headroom`](https://github.com/chopratejas/headroom) | 通用压缩中间层 + 可逆 CCR + memory bridge | [`notes/headroom.md`](notes/headroom.md) |
+| `research/rtk` | [`rtk-ai/rtk`](https://github.com/rtk-ai/rtk) | shell/CLI 输出前门压缩 | [`notes/rtk.md`](notes/rtk.md) |
+| `research/ctx-zip` | [`karthikscale3/ctx-zip`](https://github.com/karthikscale3/ctx-zip) | 轻量级文件落盘式 tool result compaction 库 | [`notes/ctx-zip.md`](notes/ctx-zip.md) |
+| `research/ReMe` | [`agentscope-ai/ReMe`](https://github.com/agentscope-ai/ReMe) | 文件记忆 + 向量记忆 + tool result compact | [`notes/reme.md`](notes/reme.md) |
+| `research/deepagents` | [`langchain-ai/deepagents`](https://github.com/langchain-ai/deepagents) | orchestration / subagent / compact runtime | [`notes/deepagents.md`](notes/deepagents.md) |
+| `research/letta` | [`letta-ai/letta`](https://github.com/letta-ai/letta) | stateful memory runtime | [`notes/letta.md`](notes/letta.md) |
+| `research/mem0` | [`mem0ai/mem0`](https://github.com/mem0ai/mem0) | 外部长期记忆服务层 | [`notes/mem0.md`](notes/mem0.md) |
 
 额外还有一份历史残留笔记：
 
 - [`notes/claude-context-mode.md`](notes/claude-context-mode.md)
 
 它不再对应当前 `research/` 里的真实仓库，只保留为旧调研草稿的说明。
+
+## 为什么不用 Submodule
+
+当前这个仓库更适合作为：
+
+- 调研总览
+- 结构化笔记
+- 上游项目导航入口
+
+而不是 9 个外部仓库的聚合源码仓库。
+
+所以这里默认选择：
+
+- 在 `README` 和 `notes/README.md` 里放上游 GitHub 超链接
+- 用 `scripts/bootstrap_research.sh` 在本地拉源码镜像
+- `research/` 默认不纳入主仓库版本管理
+
+不默认用 submodule 的原因很直接：
+
+- clone 后经常还要额外 `--recurse-submodules`
+- GitHub 浏览时，submodule 仍然只是跳转入口，不比普通链接更清晰
+- 9 个子模块会让仓库维护、提交和同步都变重
+- 你这个仓库的主价值是“文档与结论”，不是“托管上游源码”
+
+如果后面你只想长期跟踪 1 到 2 个核心项目，再单独加 submodule 会更合理。
 
 ## 你真正要解决的问题
 

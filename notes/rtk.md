@@ -3,7 +3,7 @@
 ## 基本信息
 
 - 本地目录：`research/rtk`
-- 远程仓库：`rtk-ai/rtk`
+- 远程仓库：[`rtk-ai/rtk`](https://github.com/rtk-ai/rtk)
 - 当前本地版本：`0.27.2`
 - 语言：Rust
 - 定位：CLI output compression proxy，强调在命令输出进入 LLM 上下文之前先做过滤与压缩
@@ -25,14 +25,19 @@
 
 - 重写入口：
   - [`research/rtk/src/rewrite_cmd.rs`](../research/rtk/src/rewrite_cmd.rs)
+    - 负责 shell 命令的解析与改写入口，决定原命令何时被改成 `rtk <subcommand>`。
 - 重写规则：
   - [`research/rtk/src/discover/registry.rs`](../research/rtk/src/discover/registry.rs)
+    - 按命令族发现合适的压缩器，是 `git`、`pytest`、`gh`、`tsc` 等规则真正挂载的地方。
 - 原始输出 tee：
   - [`research/rtk/src/tee.rs`](../research/rtk/src/tee.rs)
+    - 在压缩输出之外保存完整原始输出，并生成回看提示，避免压过头后彻底失去原文。
 - token / 历史 tracking：
   - [`research/rtk/src/tracking.rs`](../research/rtk/src/tracking.rs)
+    - 用 SQLite 记录命令历史、原始与压缩 token 数、耗时和节省比例。
 - 架构文档：
   - [`research/rtk/ARCHITECTURE.md`](../research/rtk/ARCHITECTURE.md)
+    - 解释 rewrite、compress、tee、tracking 这些组件之间的整体关系，适合先读建立全局图景。
 
 ## 核心机制
 
@@ -227,4 +232,3 @@ tee 文件只是文件，不是检索层。
 `rtk` 不是一个完整 runtime memory 系统，但它是这批本地仓库里最值得借鉴的“工具输出前置压缩层”。
 
 如果你的 agent runtime 里有大量 shell / git / build / test 工具，它几乎一定值得作为前门压缩层参考。
-

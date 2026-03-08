@@ -3,7 +3,7 @@
 ## 基本信息
 
 - 本地目录：`research/letta`
-- 远程仓库：`letta-ai/letta`
+- 远程仓库：[`letta-ai/letta`](https://github.com/letta-ai/letta)
 - 当前本地版本：`0.16.6`
 - 前身：MemGPT
 - 定位：stateful agent platform，重点是 memory blocks、archival memory、conversation search、持续状态
@@ -28,16 +28,22 @@
 
 - agent 主循环：
   - [`research/letta/letta/agents/letta_agent.py`](../research/letta/letta/agents/letta_agent.py)
+    - Letta agent 的运行主循环，处理消息推进、上下文窗口重建以及 summarizer 触发。
 - base memory rebuild：
   - [`research/letta/letta/agents/base_agent.py`](../research/letta/letta/agents/base_agent.py)
+    - 负责 memory blocks 刷新、memory string 重算，以及 system prompt 是否需要重建。
 - memory schema：
   - [`research/letta/letta/schemas/memory.py`](../research/letta/letta/schemas/memory.py)
+    - 定义 core/summary/recall/archival 等 memory 结构，是 Letta 分层记忆设计的模型基础。
 - agent schema：
   - [`research/letta/letta/schemas/agent.py`](../research/letta/letta/schemas/agent.py)
+    - 定义 agent 配置和状态字段，尤其能看出 message buffer 与 memory state 的分离方式。
 - base memory tool definitions：
   - [`research/letta/letta/functions/function_sets/base.py`](../research/letta/letta/functions/function_sets/base.py)
+    - 定义 conversation search、archival memory、core memory 更新等关键 memory tool 原语。
 - tool executor：
   - [`research/letta/letta/services/tool_executor/core_tool_executor.py`](../research/letta/letta/services/tool_executor/core_tool_executor.py)
+    - 统一执行工具调用、组装工具响应，并处理工具结果怎样反馈回 agent 主循环。
 
 ## 核心机制
 
@@ -186,4 +192,3 @@
 - **memory state 反向塑造 prompt**
 
 它不属于工具输出压缩路线，但在“长生命周期 agent 怎么继续保持状态”这件事上，本地仓库里它是非常强的参考对象。
-

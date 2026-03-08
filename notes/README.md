@@ -7,17 +7,17 @@
 
 ## 当前有效笔记
 
-| 项目 | 说明 | 笔记 |
-|---|---|---|
-| `context-mode` | 本地检索式上下文虚拟化 + session continuity | [`context-mode.md`](context-mode.md) |
-| `Context-Gateway` | API gateway + preemptive compaction + tool discovery filtering | [`context-gateway.md`](context-gateway.md) |
-| `headroom` | 通用压缩中间层 + 可逆 CCR + memory bridge | [`headroom.md`](headroom.md) |
-| `rtk` | shell / CLI 输出前门压缩 | [`rtk.md`](rtk.md) |
-| `ctx-zip` | 轻量文件落盘式 tool result compaction 库 | [`ctx-zip.md`](ctx-zip.md) |
-| `ReMe` | 文件记忆 + 向量记忆 + tool result compact | [`reme.md`](reme.md) |
-| `deepagents` | orchestration / subagent / compact runtime | [`deepagents.md`](deepagents.md) |
-| `letta` | stateful memory runtime | [`letta.md`](letta.md) |
-| `mem0` | 外部长期记忆服务层 | [`mem0.md`](mem0.md) |
+| 项目 | 上游仓库 | 说明 | 笔记 |
+|---|---|---|---|
+| `context-mode` | [`mksglu/context-mode`](https://github.com/mksglu/context-mode) | 本地检索式上下文虚拟化 + session continuity | [`context-mode.md`](context-mode.md) |
+| `Context-Gateway` | [`Compresr-ai/Context-Gateway`](https://github.com/Compresr-ai/Context-Gateway) | API gateway + preemptive compaction + tool discovery filtering | [`context-gateway.md`](context-gateway.md) |
+| `headroom` | [`chopratejas/headroom`](https://github.com/chopratejas/headroom) | 通用压缩中间层 + 可逆 CCR + memory bridge | [`headroom.md`](headroom.md) |
+| `rtk` | [`rtk-ai/rtk`](https://github.com/rtk-ai/rtk) | shell / CLI 输出前门压缩 | [`rtk.md`](rtk.md) |
+| `ctx-zip` | [`karthikscale3/ctx-zip`](https://github.com/karthikscale3/ctx-zip) | 轻量文件落盘式 tool result compaction 库 | [`ctx-zip.md`](ctx-zip.md) |
+| `ReMe` | [`agentscope-ai/ReMe`](https://github.com/agentscope-ai/ReMe) | 文件记忆 + 向量记忆 + tool result compact | [`reme.md`](reme.md) |
+| `deepagents` | [`langchain-ai/deepagents`](https://github.com/langchain-ai/deepagents) | orchestration / subagent / compact runtime | [`deepagents.md`](deepagents.md) |
+| `letta` | [`letta-ai/letta`](https://github.com/letta-ai/letta) | stateful memory runtime | [`letta.md`](letta.md) |
+| `mem0` | [`mem0ai/mem0`](https://github.com/mem0ai/mem0) | 外部长期记忆服务层 | [`mem0.md`](mem0.md) |
 
 
 ## 使用说明

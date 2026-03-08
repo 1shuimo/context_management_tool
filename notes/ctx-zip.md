@@ -3,7 +3,7 @@
 ## 基本信息
 
 - 本地目录：`research/ctx-zip`
-- 远程仓库：`karthikscale3/ctx-zip`
+- 远程仓库：[`karthikscale3/ctx-zip`](https://github.com/karthikscale3/ctx-zip)
 - 当前本地 `HEAD`：`76580f7ba1555c891928702743ac74412c7fac60`
 - 当前本地版本：`1.0.6`
 - 语言：TypeScript
@@ -27,14 +27,19 @@
 
 - 包入口：
   - [`research/ctx-zip/src/index.ts`](../research/ctx-zip/src/index.ts)
+    - 暴露整个 npm 包的公共 API，把 compactor 和 sandbox code generator 两组能力汇总导出。
 - 对话压缩入口：
   - [`research/ctx-zip/src/tool-results-compactor/compact.ts`](../research/ctx-zip/src/tool-results-compactor/compact.ts)
+    - 负责按策略选择 compaction 行为，并把 `messages`、`FileAdapter`、边界规则串起来。
 - write-to-file 策略与 boundary 逻辑：
   - [`research/ctx-zip/src/tool-results-compactor/strategies/index.ts`](../research/ctx-zip/src/tool-results-compactor/strategies/index.ts)
+    - 实现 compaction window 计算、tool-result 写文件、引用替换以及 reader tool 的跳过逻辑。
 - sandbox manager：
   - [`research/ctx-zip/src/sandbox-code-generator/sandbox-manager.ts`](../research/ctx-zip/src/sandbox-code-generator/sandbox-manager.ts)
+    - 初始化沙箱目录、注册 MCP/本地工具，并生成 `sandbox_ls/cat/grep/find/exec` 这类回看工具。
 - 示例：
   - [`research/ctx-zip/examples/ctx-management/email_management.ts`](../research/ctx-zip/examples/ctx-management/email_management.ts)
+    - 给出完整的端到端用法，展示工具结果落盘后如何靠 sandbox readers 再按需读取。
 
 ## 核心机制
 
